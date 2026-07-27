@@ -46,7 +46,7 @@ const Hero = () => {
                   View Projects
                 </Button>
 
-                <Button
+                {/* <Button
                   href={personalInfo.resumeLink}
                   variant="outline-primary"
                   size="lg"
@@ -54,7 +54,7 @@ const Hero = () => {
                 >
                   <FaFileDownload />
                   Download Resume
-                </Button>
+                </Button> */}
 
                 <a className="d-flex align-items-center gap-3 ms-lg-3" href="/blogs">
                   Read My Blogs
