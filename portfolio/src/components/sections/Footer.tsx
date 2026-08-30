@@ -11,20 +11,21 @@ const Footer = () => {
   return (
     <footer className="bg-dark text-white py-4 mt-5">
       <Container>
-        <Row className="align-items-center">
-          <Col md={6} className="text-center text-md-start mb-3 mb-md-0">
-            <p className="mb-0">
+        <Row className="align-items-center g-3">
+          <Col xs={12} md={6} className="text-center text-md-start">
+            <p className="mb-0 small text-white-50">
               © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
             </p>
           </Col>
 
-          <Col md={6} className="text-center text-md-end">
-            <div className="d-flex justify-content-center justify-content-md-end gap-3">
+          <Col xs={12} md={6} className="text-center text-md-end">
+            <div className="d-flex flex-wrap justify-content-center justify-content-md-end gap-3 small">
               {socialLinks.map((link, index) => {
                 let Icon = FaEnvelope;
                 if (link.title === "Github") Icon = FaGithub;
                 else if (link.title === "LinkedIn") Icon = FaLinkedin;
                 else if (link.title === "Email") Icon = FaEnvelope;
+                else if (link.title === "WhatsApp") Icon = FaWhatsapp;
 
                 return (
                   <a
@@ -32,23 +33,13 @@ const Footer = () => {
                     href={link.link}
                     target={link.title !== "Email" ? "_blank" : undefined}
                     rel={link.title !== "Email" ? "noopener noreferrer" : undefined}
-                    className="text-white text-decoration-none d-flex align-items-center gap-1 hover-opacity"
+                    className="text-white text-decoration-none d-inline-flex align-items-center gap-1 hover-opacity py-1"
                   >
                     <Icon />
-                    {link.title}
+                    <span>{link.title}</span>
                   </a>
                 );
               })}
-
-              <a
-                className="text-white text-decoration-none d-flex align-items-center gap-1 hover-opacity"
-                href={`https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
-                  "Hi! I came across your portfolio and would like to connect."
-                )}`}
-                target="_blank"
-              >
-                <FaWhatsapp /> WhatsApp
-              </a>
             </div>
           </Col>
         </Row>

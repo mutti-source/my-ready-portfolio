@@ -1,25 +1,26 @@
 export const experiences = [
   {
-    title: "Full Stack Developer & AI Engineer",
-    period: "2024 — 2025",
+    title: "Onboarding Specialist / Software Analyst & Forms Team Lead",
+    company: "PlanStreet Inc.",
+    period: "Jan 2023 — Present",
     description:
-      "Delivered production-ready web applications for multiple clients, focusing on scalability, performance, and clean architecture. Projects consistently improved usability and business outcomes.",
+      "Led enterprise SaaS onboarding and implementation for U.S. state health and social-service organizations. Configured workflows, managed UAT, and drove successful client adoptions.",
     responsibilities: [
-      "Developed 3 production React Native applications for iOS and Android platforms with complex navigation flows using React Navigation",
-      "Implemented state management solutions using Redux and Context API for applications supporting 10,000+ users",
-      "Built real-time chat functionality with WebSocket integration and optimized FlatList performance for smooth scrolling with 1000+ messages",
-
+      "Configured multi-stage forms, workflows, and conditional logic to map complex business processes for enterprise clients.",
+      "Led User Acceptance Testing (UAT), trained clients, and managed stakeholder expectations throughout the implementation lifecycle.",
+      "Increased user adoption by 40% through strategic team leadership and intelligent form optimization.",
     ],
   },
   {
-    title: "Software Analyst & Forms Team Lead",
-    period: "2023 — present",
+    title: "Full Stack Developer",
+    company: "MaxRemind Inc.",
+    period: "Sep 2024 — May 2025",
     description:
-      "",
+      "Built and shipped production mobile and web features end-to-end, focusing on scalable architecture and seamless user experiences.",
     responsibilities: [
-      "Lead forms development team and analyze business requirements for digital solutions",
-      "Increased user adoption by 40% through strategic team leadership and intelligent form optimization",
- 
+      "Developed full-stack features using Django, Microsoft SQL Server, REST APIs, React Native, and Firebase.",
+      "Implemented state management with Redux and integrated Firebase Cloud Messaging (FCM) for real-time notifications.",
+      "Containerized applications using Docker and deployed robust, production-ready solutions.",
     ],
   },
 ];

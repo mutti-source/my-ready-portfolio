@@ -1,10 +1,11 @@
 export const personalInfo = {
-  name: "Muttiullah Qureshi",
-  title: "Full-Stack Developer",
+  name: "Mutti Ullah Qureshi",
+  title: "Business Analyst & Full-Stack Developer",
   intro:
-    "Mid-level full-stack developer with experience building production-ready web applications. Focused on scalable, maintainable solutions that solve real-world problems.",
-  resumeLink: "/my_cv_n.pdf",
+    "Leading SaaS onboarding and implementation for enterprise clients, with hands-on technical depth in full-stack development to build and deliver scalable solutions.",
+  resumeLink: "/Mutti_Ullah_Qureshi_CV.pdf",
   email: "mutti0738@gmail.com",
-  phone: "923205004945"
+  phone: "923205004945",
+  whatsapp: "https://wa.me/923205004945"
 };
 

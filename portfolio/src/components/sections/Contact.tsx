@@ -46,7 +46,7 @@ const Contact = () => {
   return (
     <motion.section
       id="contact"
-      className="py-5"
+      className="py-4 py-md-5"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -54,10 +54,10 @@ const Contact = () => {
     >
       <Container>
         <motion.div variants={childVariants}>
-          <Row className="justify-content-center text-center mb-5">
-            <Col lg={6}>
+          <Row className="justify-content-center text-center mb-4 mb-md-5">
+            <Col xs={12} sm={10} md={8} lg={6}>
               <h2 className="fw-semibold display-6 mb-3">Contact</h2>
-              <p className="text-muted fs-5">
+              <p className="text-muted fs-6 fs-md-5">
                 Reach out for job opportunities or professional collaborations.
               </p>
             </Col>
@@ -66,19 +66,21 @@ const Contact = () => {
 
         <motion.div variants={childVariants}>
           <Row className="justify-content-center mb-4">
-            <Col lg={6}>
-              <div className="d-flex justify-content-center gap-4 fs-4">
+            <Col xs={12} sm={8} md={6}>
+              <div className="d-flex justify-content-center gap-3 gap-md-4 fs-3">
                 {socialLinks.map((link) => (
                   <a
                     key={link.title}
                     href={link.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted"
+                    className="text-muted p-2"
+                    aria-label={link.title}
                   >
                     {link.title === "Github" && <FaGithub />}
                     {link.title === "LinkedIn" && <FaLinkedin />}
                     {link.title === "Email" && <FaEnvelope />}
+                    {link.title === "WhatsApp" && <FaWhatsapp />}
                   </a>
                 ))}
               </div>
@@ -88,7 +90,7 @@ const Contact = () => {
 
         <motion.div variants={childVariants}>
           <Row className="justify-content-center">
-            <Col md={8} lg={6}>
+            <Col xs={12} sm={11} md={8} lg={6}>
               <Form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
                 <Form.Control
                   name="name"
@@ -97,6 +99,7 @@ const Contact = () => {
                   type="text"
                   placeholder="Name"
                   required
+                  className="py-2.5 px-3"
                 />
                 <Form.Control
                   name="email"
@@ -105,6 +108,7 @@ const Contact = () => {
                   type="email"
                   placeholder="Email"
                   required
+                  className="py-2.5 px-3"
                 />
                 <Form.Control
                   name="message"
@@ -114,6 +118,7 @@ const Contact = () => {
                   rows={4}
                   placeholder="Message"
                   required
+                  className="py-2.5 px-3"
                 />
 
                 {status === "success" && (
@@ -124,18 +129,17 @@ const Contact = () => {
                 )}
 
                 <div className="d-grid mt-2">
-                  <Button variant="primary" size="lg" type="submit" disabled={status === "loading"}>
+                  <Button variant="primary" size="lg" type="submit" disabled={status === "loading"} className="btn-primary-custom">
                     {status === "loading" ? "Sending..." : "Send Message"}
                   </Button>
                 </div>
               </Form>
               <div className="text-center mt-4">
-                <p className="text-muted mb-2">Or reach me directly on</p>
+                <p className="text-muted mb-2 small">Or reach me directly on</p>
 
                 <Button
                   variant="success"
-                  size="sm"
-                  className="d-inline-flex align-items-center gap-2"
+                  className="d-inline-flex align-items-center justify-content-center gap-2 px-4 py-2 w-100 w-sm-auto"
                   href={`https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
                     "Hi! I came across your portfolio and would like to connect."
                   )}`}

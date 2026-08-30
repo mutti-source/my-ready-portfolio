@@ -6,6 +6,7 @@ import About from "@/src/components/sections/About";
 import Skills from "@/src/components/sections/Skills";
 import Projects from "@/src/components/sections/Projects";
 import Experience from "@/src/components/sections/Experience";
+import CaseStudy from "@/src/components/sections/CaseStudy";
 import Contact from "@/src/components/sections/Contact";
 import Footer from "../components/sections/Footer";
 
@@ -67,8 +68,8 @@ export default function Home() {
       </div>
 
       <button
-        className="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-4 z-3 d-none"
-        style={{ width: "50px", height: "50px" }}
+        className="btn btn-primary rounded-circle shadow-lg position-fixed bottom-0 end-0 m-3 m-md-4 z-3 d-none d-flex align-items-center justify-content-center"
+        style={{ width: "44px", height: "44px", fontSize: "1.2rem" }}
         id="back-to-top"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Back to top"
@@ -93,16 +94,22 @@ export default function Home() {
         <Skills />
       </section>
 
-      {/* Projects Section */}
-      <section id="projects-section" className="position-relative">
-        <div className="container-divider"></div>
-        <Projects />
-      </section>
-
       {/* Experience Section */}
       <section id="experience-section" className="position-relative">
         <div className="container-divider"></div>
         <Experience />
+      </section>
+
+      {/* Featured Case Study Section */}
+      <section id="case-study-section" className="position-relative">
+        <div className="container-divider"></div>
+        <CaseStudy />
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects-section" className="position-relative">
+        <div className="container-divider"></div>
+        <Projects />
       </section>
 
       {/* Contact Section */}

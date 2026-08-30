@@ -14,36 +14,34 @@ const Projects = () => {
   return (
     <motion.section
       id="projects"
-      className="py-5"
+      className="py-4 py-md-5"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       variants={staggerContainer}
     >
       <Container>
-        
-        <h2 className="text-center fw-semibold display-6 mb-5">
+        <h2 className="text-center fw-semibold display-6 mb-4 mb-md-5">
           Projects
         </h2>
 
-        <Row className="g-4">
+        <Row className="g-3 g-md-4">
           {projects.map((project, index) => (
-            <Col key={index} md={6} lg={4}>
+            <Col key={index} xs={12} md={6} lg={4}>
               <motion.div variants={childVariants} className="h-100">
                 <Card className="h-100 shadow-sm border-0">
-                  <Card.Body className="d-flex flex-column">
+                  <Card.Body className="d-flex flex-column p-3 p-md-4">
                     <div className="mb-3">
-                      <Card.Title className="fw-semibold mb-2">
+                      <Card.Title className="fw-semibold mb-2 fs-5">
                         {project.title}
                       </Card.Title>
-                      
 
-                      <Card.Text className="text-muted"  >
+                      <Card.Text className="text-muted small">
                         {project.description}
                       </Card.Text>
                     </div>
 
-                    <ul className="ps-3 text-muted mb-3">
+                    <ul className="ps-3 text-muted mb-3 small">
                       {project.features.map((feature, i) => (
                         <li key={i} className="mb-1">
                           {feature}
@@ -51,34 +49,31 @@ const Projects = () => {
                       ))}
                     </ul>
 
-                    <p className="text-muted mb-4">
-                      <strong>Tech Stack:</strong> {project.tech.join(", ")}
-                    </p>
+                    <div className="mb-4 d-flex flex-wrap gap-1.5 gap-md-2">
+                      {project.tech.map((t, i) => (
+                        <motion.span
+                          key={i}
+                          className="badge bg-body-secondary text-body border fw-normal"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          {t}
+                        </motion.span>
+                      ))}
+                    </div>
 
-                    <div className="mt-auto d-flex gap-3">
+                    <div className="mt-auto d-flex flex-wrap gap-2">
                       <Button
                         href={project.github}
                         target="_blank"
                         variant="outline-secondary"
                         size="sm"
-                        className="d-flex align-items-center gap-2"
+                        className="d-inline-flex align-items-center gap-2"
                       >
                         <FaGithub />
                         GitHub
                       </Button>
-
-                      {/* {project.demo && (
-                        <Button
-                          href={project?.demo}
-                          target="_blank"
-                          variant="dark"
-                          size="sm"
-                          className="d-flex align-items-center gap-2"
-                        >
-                          <FaExternalLinkAlt />
-                          Demo
-                        </Button>
-                      )} */}
                     </div>
                   </Card.Body>
                 </Card>

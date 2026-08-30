@@ -1,23 +1,49 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+:root {
+  --bs-primary: #006b7d;
+  --bs-primary-rgb: 0, 107, 125;
+  --bs-link-color: #006b7d;
+  --bs-link-hover-color: #004b57;
 }
 
 body {
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
-/* Section spacing */
-.section {
-  padding: 5rem 1rem;
+/* Section spacing with responsive padding */
+section, .section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
 
-/* Container width control */
+@media (min-width: 768px) {
+  section, .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Container width & gutter control */
 .container-tight {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.container-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 125, 0.2), transparent);
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
 /* Muted text (Bootstrap-aligned) */
@@ -27,22 +53,37 @@ body {
 
 /* Buttons */
 .btn-primary-custom {
-  padding: 0.6rem 1.5rem;
+  padding: 0.65rem 1.5rem;
   font-weight: 500;
+  min-height: 48px;
+}
+
+@media (max-width: 575.98px) {
+  .w-sm-auto {
+    width: auto !important;
+  }
+}
+
+/* Inputs - Prevent iOS automatic zoom on focus */
+.form-control, .form-select, textarea {
+  font-size: 1rem !important;
 }
 
 /* Card polish */
 .card {
   border-radius: 0.75rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  word-wrap: break-word;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
 }
 
-/* Links */
+/* Links & Hover states */
 a {
   text-decoration: none;
 }
@@ -51,8 +92,16 @@ a:hover {
   text-decoration: underline;
 }
 
+.hover-opacity:hover {
+  opacity: 0.8;
+}
+
 /* Dark mode support (Bootstrap 5.3+) */
 [data-bs-theme="dark"] body {
   background-color: #0d1117;
   color: #e6edf3;
+}
+
+[data-bs-theme="dark"] .container-divider {
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 125, 0.35), transparent);
 }
