@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaPaperPlane } from "react-icons/fa";
 import {
   staggerContainer,
   staggerFast,
@@ -14,6 +14,7 @@ import {
 import { socialLinks } from "@/src/data/socialLinks";
 import { personalInfo } from "@/src/data/personalInfo";
 import SectionHeading from "@/src/components/SectionHeading";
+import Card3D from "@/src/components/ui/Card3D";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const Contact = () => {
   return (
     <motion.section
       id="contact"
-      className="py-4 py-md-5"
+      className="py-5"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
@@ -64,7 +65,7 @@ const Contact = () => {
       <Container>
         <SectionHeading
           title="Get In Touch"
-          subtitle="Reach out for job opportunities, SaaS implementation consulting, or technical collaborations."
+          subtitle="Reach out for SaaS implementation consulting, enterprise onboarding leadership, or full-stack software development."
         />
 
         {/* Social Icons Bar */}
@@ -86,7 +87,7 @@ const Contact = () => {
                   className="text-muted p-2"
                   aria-label={link.title}
                   variants={tagPop}
-                  whileHover={{ scale: 1.2, color: "#006b7d" }}
+                  whileHover={{ scale: 1.25, color: "#00e5ff" }}
                   whileTap={{ scale: 0.9 }}
                 >
                   {link.title === "Github" && <FaGithub />}
@@ -99,84 +100,111 @@ const Contact = () => {
           </Col>
         </Row>
 
-        {/* Contact Form */}
+        {/* 3D Contact Form Terminal */}
         <Row className="justify-content-center">
           <Col xs={12} sm={11} md={8} lg={6}>
             <motion.div variants={fadeInUp}>
-              <Form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <motion.div variants={childVariants}>
-                  <Form.Control
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Your Name"
-                    required
-                    className="py-2.5 px-3 shadow-none border"
-                  />
-                </motion.div>
+              <Card3D
+                maxTilt={10}
+                glowColor="rgba(0, 229, 255, 0.3)"
+                className="p-4 p-md-5 position-relative overflow-hidden"
+              >
+                <div className="hologram-scanline" />
+                <div
+                  className="position-absolute top-0 start-0 w-100"
+                  style={{
+                    height: "3px",
+                    background: "linear-gradient(90deg, #00e5ff, #00a896)",
+                  }}
+                />
 
-                <motion.div variants={childVariants}>
-                  <Form.Control
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    type="email"
-                    placeholder="Your Email"
-                    required
-                    className="py-2.5 px-3 shadow-none border"
-                  />
-                </motion.div>
+                <Form onSubmit={handleSubmit} className="d-flex flex-column gap-3" style={{ transform: "translateZ(25px)" }}>
+                  <motion.div variants={childVariants}>
+                    <Form.Label className="small text-muted fw-semibold">Your Name</Form.Label>
+                    <Form.Control
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="e.g. John Doe"
+                      required
+                      className="py-2.5 px-3"
+                    />
+                  </motion.div>
 
-                <motion.div variants={childVariants}>
-                  <Form.Control
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    as="textarea"
-                    rows={4}
-                    placeholder="Your Message"
-                    required
-                    className="py-2.5 px-3 shadow-none border"
-                  />
-                </motion.div>
+                  <motion.div variants={childVariants}>
+                    <Form.Label className="small text-muted fw-semibold">Email Address</Form.Label>
+                    <Form.Control
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      type="email"
+                      placeholder="e.g. john@company.com"
+                      required
+                      className="py-2.5 px-3"
+                    />
+                  </motion.div>
 
-                {status === "success" && (
-                  <Alert variant="success">Message sent successfully!</Alert>
-                )}
-                {status === "error" && (
-                  <Alert variant="danger">Something went wrong. Try again.</Alert>
-                )}
+                  <motion.div variants={childVariants}>
+                    <Form.Label className="small text-muted fw-semibold">Message</Form.Label>
+                    <Form.Control
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      as="textarea"
+                      rows={4}
+                      placeholder="Discuss project requirements, SaaS onboarding, or engineering..."
+                      required
+                      className="py-2.5 px-3"
+                    />
+                  </motion.div>
 
-                <motion.div className="d-grid mt-2" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="btn-primary-custom"
-                  >
-                    {status === "loading" ? "Sending..." : "Send Message"}
-                  </Button>
-                </motion.div>
-              </Form>
+                  {status === "success" && (
+                    <Alert variant="success" className="bg-dark border border-success text-success">
+                      Message sent successfully! I'll get back to you shortly.
+                    </Alert>
+                  )}
+                  {status === "error" && (
+                    <Alert variant="danger" className="bg-dark border border-danger text-danger">
+                      Something went wrong. Please reach out directly on WhatsApp or Email.
+                    </Alert>
+                  )}
 
-              <div className="text-center mt-4">
-                <p className="text-muted mb-2 small">Or reach me directly on</p>
+                  <motion.div className="d-grid mt-2" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+                    <Button
+                      size="lg"
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="btn-primary-custom d-flex align-items-center justify-content-center gap-2"
+                    >
+                      <FaPaperPlane />
+                      {status === "loading" ? "Transmitting..." : "Send Message"}
+                    </Button>
+                  </motion.div>
+                </Form>
 
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="d-inline-block">
-                  <Button
-                    variant="success"
-                    className="d-inline-flex align-items-center justify-content-center gap-2 px-4 py-2 w-100 w-sm-auto shadow-sm"
-                    href={`https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
-                      "Hi! I came across your portfolio and would like to connect."
-                    )}`}
-                    target="_blank"
-                  >
-                    <FaWhatsapp /> WhatsApp Me
-                  </Button>
-                </motion.div>
-              </div>
+                <div
+                  className="text-center mt-4 pt-3 border-top border-secondary border-opacity-25"
+                  style={{ transform: "translateZ(20px)" }}
+                >
+                  <p className="text-muted mb-2 small">Prefer instant messaging?</p>
+
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="d-inline-block">
+                    <Button
+                      variant="success"
+                      className="d-inline-flex align-items-center justify-content-center gap-2 px-4 py-2 w-100 w-sm-auto shadow-sm"
+                      style={{ borderRadius: "10px", fontWeight: 600 }}
+                      href={`https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
+                        "Hi Mutti! I came across your portfolio and would like to connect regarding an opportunity."
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaWhatsapp className="fs-5" /> Direct WhatsApp Chat
+                    </Button>
+                  </motion.div>
+                </div>
+              </Card3D>
             </motion.div>
           </Col>
         </Row>

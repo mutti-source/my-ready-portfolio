@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import {
   staggerContainer,
   slideInLeft,
@@ -9,12 +9,14 @@ import {
 } from "@/src/components/AnimationVariants";
 import { experiences } from "@/src/data/experiences";
 import SectionHeading from "@/src/components/SectionHeading";
+import Card3D from "@/src/components/ui/Card3D";
+import { FaBriefcase, FaCalendarAlt, FaCheckCircle } from "react-icons/fa";
 
 const Experience = () => {
   return (
     <motion.section
       id="experience"
-      className="py-4 py-md-5"
+      className="py-5"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
@@ -23,58 +25,80 @@ const Experience = () => {
       <Container>
         <SectionHeading
           title="Professional Experience"
-          subtitle="Proven track record in enterprise SaaS onboarding and full-stack software development."
+          subtitle="Proven leadership in enterprise SaaS client onboarding, business analysis, and full-stack engineering."
         />
 
-        <Row className="g-3 g-md-4">
+        <Row className="g-4">
           {experiences.map((exp, index) => {
             const cardVariant = index % 2 === 0 ? slideInLeft : slideInRight;
 
             return (
               <Col key={index} xs={12} md={6}>
-                <motion.div
-                  variants={cardVariant}
-                  className="h-100"
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <Card className="h-100 shadow-sm border-0 position-relative overflow-hidden">
+                <motion.div variants={cardVariant} className="h-100">
+                  <Card3D
+                    maxTilt={12}
+                    glowColor={
+                      index === 0
+                        ? "rgba(0, 229, 255, 0.35)"
+                        : "rgba(0, 168, 150, 0.35)"
+                    }
+                    className="p-4 h-100 d-flex flex-column"
+                  >
                     <div
                       className="position-absolute top-0 start-0 w-100"
                       style={{
                         height: "3px",
                         background:
                           index === 0
-                            ? "linear-gradient(90deg, #006b7d, #00e5ff)"
-                            : "linear-gradient(90deg, #028090, #00a896)",
+                            ? "linear-gradient(90deg, #00e5ff, #00a896)"
+                            : "linear-gradient(90deg, #00a896, #028090)",
                       }}
                     />
-                    <Card.Body className="d-flex flex-column p-3 p-md-4">
-                      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-start mb-2">
-                        <Card.Title className="h5 fw-bold mb-1 mb-sm-0">
-                          {exp.title}
-                        </Card.Title>
-                        <span className="badge bg-body-secondary text-primary border small flex-shrink-0 mt-1 mt-sm-0">
-                          {exp.period}
-                        </span>
+                    <div className="hologram-scanline" />
+
+                    {/* Card Title & Period */}
+                    <div
+                      className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-start mb-2"
+                      style={{ transform: "translateZ(30px)" }}
+                    >
+                      <h3 className="h5 fw-bold text-light mb-1 mb-sm-0 d-flex align-items-center gap-2">
+                        <FaBriefcase className="text-info small" />
+                        {exp.title}
+                      </h3>
+                      <span className="badge bg-body-secondary text-info border border-info border-opacity-30 small flex-shrink-0 mt-1 mt-sm-0 d-flex align-items-center gap-1.5">
+                        <FaCalendarAlt className="small" />
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    {exp.company && (
+                      <div
+                        className="h6 text-info fw-semibold mb-3"
+                        style={{ transform: "translateZ(25px)" }}
+                      >
+                        {exp.company}
                       </div>
-                      {exp.company && (
-                        <div className="h6 text-primary fw-semibold mb-3">
-                          {exp.company}
-                        </div>
-                      )}
-                      <Card.Text className="mb-3 text-muted">
-                        {exp.description}
-                      </Card.Text>
-                      <ul className="ps-3 mb-0">
-                        {exp.responsibilities.map((resp, i) => (
-                          <li key={i} className="text-muted mb-1.5">
-                            {resp}
-                          </li>
-                        ))}
-                      </ul>
-                    </Card.Body>
-                  </Card>
+                    )}
+
+                    <p
+                      className="mb-3 text-muted small lh-base"
+                      style={{ transform: "translateZ(20px)" }}
+                    >
+                      {exp.description}
+                    </p>
+
+                    {/* Responsibilities list */}
+                    <ul
+                      className="ps-3 mb-0 text-muted small"
+                      style={{ transform: "translateZ(15px)" }}
+                    >
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i} className="mb-2 lh-base">
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card3D>
                 </motion.div>
               </Col>
             );

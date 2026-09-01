@@ -2,19 +2,21 @@
 
 import { personalInfo } from "@/src/data/personalInfo";
 import { socialLinks } from "@/src/data/socialLinks";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { FaGithub, FaLinkedin, FaFileDownload, FaEnvelope, FaWhatsapp } from "react-icons/fa";
-
-
+import { Container, Row, Col } from "react-bootstrap";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaCube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white py-4 mt-5">
+    <footer className="py-4 mt-5 position-relative border-top border-info border-opacity-20 bg-black bg-opacity-60 backdrop-blur">
       <Container>
         <Row className="align-items-center g-3">
           <Col xs={12} md={6} className="text-center text-md-start">
-            <p className="mb-0 small text-white-50">
-              © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+            <p className="mb-0 small text-muted d-flex align-items-center justify-content-center justify-content-md-start gap-1.5">
+              <FaCube className="text-info" />
+              <span>
+                © {new Date().getFullYear()}{" "}
+                <strong className="text-light">{personalInfo.name}</strong>. Built with Three.js & Next.js.
+              </span>
             </p>
           </Col>
 
@@ -33,9 +35,9 @@ const Footer = () => {
                     href={link.link}
                     target={link.title !== "Email" ? "_blank" : undefined}
                     rel={link.title !== "Email" ? "noopener noreferrer" : undefined}
-                    className="text-white text-decoration-none d-inline-flex align-items-center gap-1 hover-opacity py-1"
+                    className="text-muted text-decoration-none d-inline-flex align-items-center gap-1 hover-opacity py-1"
                   >
-                    <Icon />
+                    <Icon className="text-info" />
                     <span>{link.title}</span>
                   </a>
                 );

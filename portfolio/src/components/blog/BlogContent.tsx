@@ -4,14 +4,21 @@ import styles from "./BlogContent.module.css";
 
 interface BlogContentProps {
     slug: string;
+    initialContent?: string;
 }
 
-const BlogContent: React.FC<BlogContentProps> = ({ slug }) => {
-    const [content, setContent] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(true);
+const BlogContent: React.FC<BlogContentProps> = ({ slug, initialContent = "" }) => {
+    const [content, setContent] = useState<string>(initialContent);
+    const [loading, setLoading] = useState<boolean>(!initialContent);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (initialContent) {
+            setContent(initialContent);
+            setLoading(false);
+            return;
+        }
+
         const loadContent = async () => {
             try {
                 setLoading(true);
@@ -33,7 +40,7 @@ const BlogContent: React.FC<BlogContentProps> = ({ slug }) => {
         };
 
         loadContent();
-    }, [slug]);
+    }, [slug, initialContent]);
 
     if (loading) {
         return (
@@ -60,3 +67,4 @@ const BlogContent: React.FC<BlogContentProps> = ({ slug }) => {
 };
 
 export default BlogContent;
+

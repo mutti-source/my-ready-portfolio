@@ -21,6 +21,6 @@ export const skills = [
   },
   {
     title: "Tools",
-    skills: ["Git", "Docker", "Figma"],
+    skills: ["Git", "Docker", "n8n.io", "form.io"],
   },
 ];
